@@ -1,0 +1,575 @@
+{
+	"info": {
+		"name": "ASP.NET Core API - CityInfo",
+		"_postman_id": "b0ab048a-e427-df3d-e7e2-d6f62e0c24e3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Cities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:54882/api/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET City",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Points of Interest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Points of Interest (no city)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/4/pointsofinterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"4",
+						"pointsofinterest"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Point of Interest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Point of Interest (no city)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/5/pointsofinterest/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"5",
+						"pointsofinterest",
+						"2"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Point of Interest (no poi)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"6"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Point of Interest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Père Lachaise\",\n\t\"description\": \"Famous cemetery where Jim Morrison and Oscar Wilde are buried.\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/3/pointsofinterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"3",
+						"pointsofinterest"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Point of Interest (can't deserialize)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/3/pointsofinterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"3",
+						"pointsofinterest"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Point of Interest (missing name, long description)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"invalidproperty\": 1,\n\t\"description\": \"Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.Famous cemetery where Jim Morrison and Oscar Wilde are buried.\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/3/pointsofinterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"3",
+						"pointsofinterest"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Point of Interest (name == description)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Père Lachaise\",\n\t\"description\": \"Père Lachaise\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/3/pointsofinterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"3",
+						"pointsofinterest"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Point of Interest",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"name\": \"Updated - Central Park\",\n        \"description\": \"Updated - The most visited urban park in the United States.\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Point of Interest (no description)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"name\": \"Updated again - Central Park\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Point of Interest",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"op\": \"replace\",\n        \"path\": \"/name\",\n        \"value\": \"Updated - Central Park\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Point of Interest (update multiple)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"op\": \"replace\",\n        \"path\": \"/name\",\n        \"value\": \"Updated - Central Park\"\n\t},\n\t{\n        \"op\": \"replace\",\n        \"path\": \"/description\",\n        \"value\": \"Updated - Description\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Point of Interest (invalid property)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"op\": \"replace\",\n        \"path\": \"/invalid\",\n        \"value\": \"Updated - Central Park\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Point of Interest (remove name)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"op\": \"remove\",\n        \"path\": \"/name\",\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Point of Interest (update same)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"op\": \"replace\",\n        \"path\": \"/name\",\n        \"value\": \"Updated - Central Park\"\n\t},\n\t{\n        \"op\": \"replace\",\n        \"path\": \"/description\",\n        \"value\": \"Updated - Central Park\"\n\t}\n]"
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Point of Interest",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
