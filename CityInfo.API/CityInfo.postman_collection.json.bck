@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "GET Cities",
+			"name": "Cities",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -29,7 +29,7 @@
 			"response": []
 		},
 		{
-			"name": "GET City",
+			"name": "City",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -40,7 +40,7 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:54882/api/cities/1",
+					"raw": "http://localhost:54882/api/cities/1?includePointsOfInterest=true",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -50,6 +50,13 @@
 						"api",
 						"cities",
 						"1"
+					],
+					"query": [
+						{
+							"key": "includePointsOfInterest",
+							"value": "true",
+							"equals": true
+						}
 					]
 				},
 				"description": ""
@@ -57,7 +64,7 @@
 			"response": []
 		},
 		{
-			"name": "GET Points of Interest",
+			"name": "Points of Interest",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -81,7 +88,7 @@
 			"response": []
 		},
 		{
-			"name": "GET Points of Interest (no city)",
+			"name": "Points of Interest (no city)",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -105,7 +112,7 @@
 			"response": []
 		},
 		{
-			"name": "GET Point of Interest",
+			"name": "Point of Interest",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -130,7 +137,7 @@
 			"response": []
 		},
 		{
-			"name": "GET Point of Interest (no city)",
+			"name": "Point of Interest (no city)",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -155,7 +162,7 @@
 			"response": []
 		},
 		{
-			"name": "GET Point of Interest (no poi)",
+			"name": "Point of Interest (no poi)",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -180,7 +187,7 @@
 			"response": []
 		},
 		{
-			"name": "POST Point of Interest",
+			"name": "Point of Interest",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -212,7 +219,7 @@
 			"response": []
 		},
 		{
-			"name": "POST Point of Interest (can't deserialize)",
+			"name": "Point of Interest (can't deserialize)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -244,7 +251,7 @@
 			"response": []
 		},
 		{
-			"name": "POST Point of Interest (missing name, long description)",
+			"name": "Point of Interest (missing name, long description)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -276,7 +283,7 @@
 			"response": []
 		},
 		{
-			"name": "POST Point of Interest (name == description)",
+			"name": "Point of Interest (name == description)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -308,7 +315,7 @@
 			"response": []
 		},
 		{
-			"name": "PUT Point of Interest",
+			"name": "Point of Interest",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -341,7 +348,7 @@
 			"response": []
 		},
 		{
-			"name": "PUT Point of Interest (no description)",
+			"name": "Point of Interest (no description)",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -374,7 +381,7 @@
 			"response": []
 		},
 		{
-			"name": "PATCH Point of Interest",
+			"name": "Point of Interest",
 			"request": {
 				"method": "PATCH",
 				"header": [
@@ -407,7 +414,7 @@
 			"response": []
 		},
 		{
-			"name": "PATCH Point of Interest (update multiple)",
+			"name": "Point of Interest (update multiple)",
 			"request": {
 				"method": "PATCH",
 				"header": [
@@ -440,7 +447,7 @@
 			"response": []
 		},
 		{
-			"name": "PATCH Point of Interest (invalid property)",
+			"name": "Point of Interest (invalid property)",
 			"request": {
 				"method": "PATCH",
 				"header": [
@@ -473,7 +480,7 @@
 			"response": []
 		},
 		{
-			"name": "PATCH Point of Interest (remove name)",
+			"name": "Point of Interest (remove name)",
 			"request": {
 				"method": "PATCH",
 				"header": [
@@ -506,7 +513,7 @@
 			"response": []
 		},
 		{
-			"name": "PATCH Point of Interest (update same)",
+			"name": "Point of Interest (update same)",
 			"request": {
 				"method": "PATCH",
 				"header": [
@@ -539,7 +546,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE Point of Interest",
+			"name": "Point of Interest",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -553,7 +560,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1",
+					"raw": "http://localhost:54882/api/cities/1/pointsofinterest/1002",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -564,7 +571,29 @@
 						"cities",
 						"1",
 						"pointsofinterest",
-						"1"
+						"1002"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Test database",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:54882/api/testdatabase",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54882",
+					"path": [
+						"api",
+						"testdatabase"
 					]
 				},
 				"description": ""

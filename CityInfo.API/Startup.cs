@@ -8,11 +8,40 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using CityInfo.API.Services;
+using Microsoft.Extensions.Configuration;
+using CityInfo.API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityInfo.API
 {
     public class Startup
     {
+        /* .NET Core 1.0 version
+         
+        public static IConfigurationRoot Configuration;
+
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appSettings.json", optional:false, reloadOnChange:true)
+                .AddJsonFile("appSettings.{env.Environment}.json", optional:true, reloadOnChange:true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
+        }
+        */
+
+        public static IConfiguration Configuration { get; private set; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -21,21 +50,36 @@ namespace CityInfo.API
                 .AddMvcOptions(o => o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter()));
 
 
-                /* Conversion to class property casing instead of camel casing
-                .AddJsonOptions(o =>
+            /* Conversion to class property casing instead of camel casing
+            .AddJsonOptions(o =>
+            {
+                if (o.SerializerSettings.ContractResolver != null)
                 {
-                    if (o.SerializerSettings.ContractResolver != null)
-                    {
-                        var castedResolver = o.SerializerSettings.ContractResolver as DefaultContractResolver;
-                        castedResolver.NamingStrategy = null;
-                    }
-                });
-                */
+                    var castedResolver = o.SerializerSettings.ContractResolver as DefaultContractResolver;
+                    castedResolver.NamingStrategy = null;
+                }
+            });
+            */
+#if DEBUG
+            services.AddTransient<IMailService, LocalMailService>();
+#else
+            services.AddTransient<IMailService, CloudMailService>();
+#endif
+            var connectionString = Startup.Configuration["connectionStrings:cityInfoDBConnectionString"];
+            services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionString));
+
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CityInfoContext cityInfoContext)
         {
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
+            //loggerFactory.AddProvider(new NLog.Extensions.Logging.NLogLoggerProvider());
+            loggerFactory.AddNLog();
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -45,11 +89,23 @@ namespace CityInfo.API
                 app.UseExceptionHandler();
             }
 
+            cityInfoContext.EnsureSeedDataForContext();
+
             app.UseStatusCodePages();
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Entities.City, Models.CityWithoutPointsOfInterestDto>();
+                cfg.CreateMap<Entities.City, Models.CityDto>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestDto>();
+                cfg.CreateMap<Models.PointOfInterestForCreationDto, Entities.PointOfInterest>();
+                cfg.CreateMap<Models.PointOfInterestForUpdateDto, Entities.PointOfInterest>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestForUpdateDto>();
+            });
 
             app.UseMvc();
 
-
         }
+
     }
 }
